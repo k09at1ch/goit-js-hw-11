@@ -24,8 +24,7 @@ async function getElemets() {
   const api = `https://pixabay.com/api/?key=${apiKey}&q=${searchingValue}&image_type=photo&pretty=true&safesearch=true&orientation=orientation&lang=en&page=${pages}&per_page=40`;
   const response = await axios.get(api);
   const data = response.data;
-  let count = response.data.total;
-  count -= 40;
+  let count = response.data.hits.length;
   console.log(count);
   if (data.totalHits === 0) {
     loadMore.classList.remove('shown');
@@ -42,7 +41,7 @@ async function getElemets() {
     return;
   }
 
-  if (response.data.hits.length < 40) {
+  if (count< 40) {
     loadMore.classList.remove('shown');
     loadMore.classList.add('hidden');
   }
