@@ -11,3 +11,36 @@
     opacity: 100;
     display: block;
 }
+.card-list{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 10px auto;
+    gap: 10px;
+}
+#input{
+    display: block;
+    margin: auto;
+    width: 190px;
+    height: 40px;
+    padding: 10px;
+    border-radius: 10px;
+    border-color: blue;
+    background-color: aqua;
+}
+#search{
+    display: block;
+    margin: 10px auto;
+    width: 150px;
+    height: 35px;
+    background-color: chartreuse;
+    border-radius: 10px;
+    border-color: blue;
+}
+.photo-card{
+    padding: 5px;
+}
+.info-item{
+    padding: 0px 20px;
+}
