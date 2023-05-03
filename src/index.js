@@ -24,7 +24,7 @@ async function getElemets() {
   const api = `https://pixabay.com/api/?key=${apiKey}&q=${searchingValue}&image_type=photo&pretty=true&safesearch=true&orientation=orientation&lang=en&page=${pages}&per_page=40`;
   const response = await axios.get(api);
   const data = response.data;
-  let count = response.data.hits.length;
+  let count = data.hits.length;
   console.log(count);
   if (data.totalHits === 0) {
     loadMore.classList.remove('shown');
@@ -40,14 +40,15 @@ async function getElemets() {
     Notiflix.Notify.warning('Type something');
     return;
   }
-
+  loadMore.classList.remove('hidden');
+  loadMore.classList.add('shown');
   if (count< 40) {
     loadMore.classList.remove('shown');
     loadMore.classList.add('hidden');
+    Notiflix.Notify.warning("We're sorry, but you've reached the end of search results.")
   }
 
-  loadMore.classList.remove('hidden');
-  loadMore.classList.add('shown');
+
   console.log(response);
   console.log(data);
   const cardsHtml = data.hits
