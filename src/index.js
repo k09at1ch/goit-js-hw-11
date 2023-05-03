@@ -7,19 +7,26 @@ const cardList = document.getElementsByClassName('card-list');
 const input = document.getElementById('input');
 const search = document.getElementById('search');
 let counter = 1;
+search.disabled=true
 loadMore.classList.add('hidden');
 search.addEventListener('click', event => {
   event.preventDefault();
   pages = 1;
   cardList[0].innerHTML = '';
   getElemets();
-  search.disabled=true
 });
 loadMore.addEventListener('click', () => {
   pages++;
   getElemets();
 });
- 
+
+input.addEventListener('input', ()=>{
+  if(input.value.length>0){
+    search.disabled=false
+  }if(input.value.length===0){
+    search.disabled=true
+  }
+})
 async function getElemets() {
   const searchingValue = input.value.replace(/\s/g, '+');
   const api = `https://pixabay.com/api/?key=${apiKey}&q=${searchingValue}&image_type=photo&pretty=true&safesearch=true&orientation=orientation&lang=en&page=${pages}&per_page=40`;
@@ -48,7 +55,7 @@ async function getElemets() {
     loadMore.classList.add('hidden');
     Notiflix.Notify.warning("We're sorry, but you've reached the end of search results.")
   }
-
+  search.disabled=true
 
   console.log(response);
   console.log(data);
