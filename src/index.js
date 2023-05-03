@@ -13,6 +13,7 @@ search.addEventListener('click', event => {
   pages = 1;
   cardList[0].innerHTML = '';
   getElemets();
+  search.disabled=true
 });
 loadMore.addEventListener('click', () => {
   pages++;
